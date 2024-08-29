@@ -1,0 +1,36 @@
+
+create database dbpro;
+
+use dbpro;
+
+create table producto (
+idproducto int auto_increment not null primary key,
+nombre varchar(100),
+precioproducto decimal (5,2),
+stock int
+);
+
+create table cliente (
+idcliente int auto_increment not null primary key,
+nombre varchar(100),
+appaterno varchar(100),
+apmaterno varchar(100)
+);
+
+create table factura (
+idfactura int auto_increment not null primary key,
+fechaFactura date,
+fkcliente int,
+foreign key (fkcliente) references cliente(idcliente)
+);
+
+create table detalle(
+iddetalle int auto_increment not null primary key,
+fkfactura int,
+foreign key (fkfactura) references factura(idfactura),
+fkproducto int,
+foreign key (fkproducto) references producto(idproducto),
+cantidad int,
+precioVenta decimal (5,2)
+);
+
